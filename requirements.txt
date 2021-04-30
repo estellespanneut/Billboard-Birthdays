@@ -1,1 +1,3 @@
+python-dotenv
 billboard.py
+sendgrid==6.6.0
