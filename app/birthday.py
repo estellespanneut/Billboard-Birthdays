@@ -1,4 +1,3 @@
-import billboard
 import os
 from dotenv import load_dotenv
 from sendgrid import SendGridAPIClient
@@ -47,5 +46,8 @@ if chart_type=="list":
 
 # other value errors are handled by billboard.py --> no need to add more input validation
 
-chart = billboard.ChartData(chart_type, birth_date)
+def get_chart(chart_type, birth_date):
+    chart = billboard.ChartData(chart_type, birth_date)
+    return chart
+
 print(chart)
