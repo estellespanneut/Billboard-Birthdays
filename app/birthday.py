@@ -5,6 +5,7 @@ from sendgrid.helpers.mail import Mail
 from datetime import datetime
 from app import APP_ENV
 import billboard #added
+import json #added
 
 # .env file should have SENDGRID_API_KEY and SENDER_EMAIL_ADDRESS variables
 load_dotenv()
@@ -49,8 +50,15 @@ if chart_type=="list":
 
 def get_chart(chart_type, birth_date):
     chart = billboard.ChartData(chart_type, birth_date)
-    return chart
+    results_dictionary = dict.fromkeys(chart)
+    return results_dictionary #chart
+    #return chart #chart
+
+#results = get_chart(chart_type, birth_date)
+#results_dictionary = dict.fromkeys(results)
+
 
 print_chart = get_chart(chart_type, birth_date) #test
 print(print_chart) #test
+#print(type(print_chart))
 #print(chart) #original
