@@ -1,3 +1,9 @@
 python-dotenv
 billboard.py
 sendgrid==6.6.0
+
+
+pgeocode
+pandas
+requests
+sendgrid==6.6.0
