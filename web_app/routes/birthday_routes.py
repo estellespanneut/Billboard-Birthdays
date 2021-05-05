@@ -44,7 +44,6 @@ def birthday_billboard(): #check this
         request_data = dict(request.form)
 
     birth_date = request_data.get("birth_date") or "2000-01-01" #error
-    print(birth_date)
     chart_type = request_data.get("chart_type") or "hot-100"
     
     results = get_chart(chart_type=chart_type, birth_date=birth_date)
