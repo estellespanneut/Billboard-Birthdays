@@ -15,9 +15,13 @@ def birthday_billboard_api():
     chart_type = request.args.get("chart_type") or "hot-100"
 
     results = get_chart(chart_type=chart_type, birth_date=birth_date)
+    print(results)
+    print(type(results))
+    print(dir(results))
+    #breakpoint()
 
     if results: 
-        #return jsonify(results) #This gives me an error every time
-        return "about me"
+        return jsonify(results) #This gives me an error every time
+        #return "about me"
     else:
         return jsonify({"message":"Invalid Information. Please try again."}), 404

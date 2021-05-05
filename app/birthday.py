@@ -38,27 +38,50 @@ def set_chart_type():
         chart_type = CHART_TYPE
     return chart_type
 
-birth_date = set_birth_date()
-chart_type = set_chart_type()
 
-# show all the available billbaord charts to the user
-if chart_type=="list":
-    print(sorted(billboard.charts()))
-    chart_type = input("Please select the desired billboard chart type from the list.")
 
 # other value errors are handled by billboard.py --> no need to add more input validation
 
 def get_chart(chart_type, birth_date):
     chart = billboard.ChartData(chart_type, birth_date)
-    results_dictionary = dict.fromkeys(chart)
-    return results_dictionary #chart
-    #return chart #chart
+    #x = str(chart[0])
+    #print(type(x))
+    #print(type(chart))
+    clean_data = []
+    #entry = 0
+    for entry in chart.entries:
+        x = entry
+        #data = str(x)
+        data = {
+        "title": str(entry)
+        }
+        clean_data.append(data)
+    return clean_data
+    #return results_dictionary #dictionary
+    #return chart #original chart class
 
 #results = get_chart(chart_type, birth_date)
 #results_dictionary = dict.fromkeys(results)
 
 
-print_chart = get_chart(chart_type, birth_date) #test
-print(print_chart) #test
+#print_chart = get_chart(chart_type, birth_date) #test
+#print(print_chart) #test
 #print(type(print_chart))
 #print(chart) #original
+
+
+if __name__ == "__main__":
+
+    birth_date = set_birth_date()
+    chart_type = set_chart_type()
+
+    # show all the available billbaord charts to the user
+    if chart_type=="list":
+        print(sorted(billboard.charts()))
+        chart_type = input("Please select the desired billboard chart type from the list.")
+
+    print_chart = get_chart(chart_type, birth_date) #test
+    print(print_chart) #test
+    #print(type(print_chart))
+    #print(chart) #original
+
