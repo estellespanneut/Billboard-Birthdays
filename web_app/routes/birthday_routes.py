@@ -1,6 +1,6 @@
 # web_app/routes/birthday_routes.py
 
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, render_template, redirect, flash
 
 from app.birthday import get_chart
 
@@ -25,3 +25,32 @@ def birthday_billboard_api():
         #return "about me"
     else:
         return jsonify({"message":"Invalid Information. Please try again."}), 404
+
+
+@birthday_routes.route("/birthday/form")
+def birthday_form():
+    print("BIRTHDAY FORM...")
+    return render_template("birthday_form.html")
+
+@birthday_routes.route("/birthday/billboard", methods=["GET", "POST"])
+def birthday_billboard(): #check this
+    print("BIRTHDAY BOARD...")
+
+    if request.method == "GET":
+        print("URL PARAMS:", dict(request.args))
+        request_data = dict(request.args)
+    elif request.method == "POST": # the form will send a POST
+        print("FORM DATA:", dict(request.form))
+        request_data = dict(request.form)
+
+    birth_date = request_data.get("birth_date") or "2000-01-01" #error
+    print(birth_date)
+    chart_type = request_data.get("chart_type") or "hot-100"
+    
+    results = get_chart(chart_type=chart_type, birth_date=birth_date)
+    if results:
+        flash("Birthday Data Generated Successfully!", "success")
+        return render_template("birthday_billboard.html", chart_type=chart_type, birth_date=birth_date, results=results)
+    else:
+        flash("Error. Please try again!", "danger")
+        return redirect("/birthday/form")

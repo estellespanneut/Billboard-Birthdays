@@ -1,0 +1,23 @@
+{% extends "bootstrap_layout.html" %}
+{% set active_page = "birthday_form" %}
+
+{% block content %}
+
+    <h2>Birthday Form</h2>
+
+    <p>Request a billboard chart based on your birthday...</p>
+
+    <form action="/birthday/billboard" method="POST">
+
+        <label>Birth Date:</label>
+        <input type="text" name="birth_date" placeholder="2000-01-01" value="2000-01-01">
+        <br>
+
+        <label>Chart Type:</label>
+        <input type="text" name="chart_type" placeholder="hot-100" value="hot-100">
+        <br>
+
+        <button>Submit</button>
+    </form>
+
+{% endblock %}

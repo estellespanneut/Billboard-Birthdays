@@ -1,0 +1,18 @@
+{% extends "bootstrap_layout.html" %}
+
+
+{% block content %}
+
+    <h2>Birthday Results for {{ chart_type }}</h2>
+
+    <p>Birthday: {{ birth_date }}</p>
+
+    <!-- TODO: consider using a table instead of a list -->
+    <!-- TODO: consider adding images using the provided icon urls -->
+    <ul>
+    {% for entry in results %}
+        <li> {{entry}} </li>
+    {% endfor %}
+    </ul>
+
+{% endblock %}
