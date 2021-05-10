@@ -4,7 +4,7 @@ from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 from datetime import datetime
 from app import APP_ENV
-import billboard #added
+import billboard.py #added
 import json #added
 
 # .env file should have SENDGRID_API_KEY and SENDER_EMAIL_ADDRESS variables
@@ -31,7 +31,7 @@ def set_chart_type():
     if APP_ENV == "development":
         chart_type = input("""
             Please enter the desired Billboard chart type to retrieve data from.
-            A few charts available are 'hot-100', 'country-songs', 'pop-songs', 'r-b-hip-hop-songs.'
+            Some charts available include 'hot-100', 'country-songs', 'pop-songs', 'r-b-hip-hop-songs.'
             If you want to view an entire list of available charts, please enter 'list'.
             """)
     else:
