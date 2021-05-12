@@ -4,7 +4,7 @@ from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 from datetime import datetime
 from app import APP_ENV
-import billboard.py #added
+import billboard #added
 import json #added
 
 # .env file should have SENDGRID_API_KEY and SENDER_EMAIL_ADDRESS variables
