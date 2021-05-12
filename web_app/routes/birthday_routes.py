@@ -53,3 +53,4 @@ def birthday_billboard(): #check this
     else:
         flash("Error. Please try again!", "danger")
         return redirect("/birthday/form")
+
