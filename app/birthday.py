@@ -6,6 +6,7 @@ from datetime import datetime
 from app import APP_ENV
 import billboard #added
 import json #added
+import ast
 
 # .env file should have SENDGRID_API_KEY and SENDER_EMAIL_ADDRESS variables
 load_dotenv()
@@ -70,6 +71,18 @@ def get_chart(chart_type, birth_date):
         clean_data.append(data["title"])
     return clean_data
 
+def get_chart_for_email(chart_type, birth_date):
+    chart = billboard.ChartData(chart_type, birth_date)
+    chart_for_email = []
+    for entry in chart.entries:
+        data = {
+        "title": entry.title,
+        "artist":entry.artist
+        }
+        chart_for_email.append(data)
+    json.dumps(chart_for_email)
+    return chart_for_email
+
 #
 # send an email using sendgrid application
 #
@@ -86,6 +99,9 @@ def SendDynamic():
     # pass custom values for our HTML placeholders
     message.dynamic_template_data = {
         'subject': 'Billboard Chart on Your Birthday!',
+        'birth_date': birth_date,
+        'chart_type': chart_type,
+        'chart_for_email': chart_for_email
     }
     message.template_id = TEMPLATE_ID
     # create our sendgrid client object, pass it our key, then send and return our response objects
@@ -110,11 +126,13 @@ if __name__ == "__main__":
     birth_date = set_birth_date()
     chart_type = set_chart_type()
 
-    print_chart = get_chart(chart_type, birth_date) #test
-    print(print_chart) #test
+    clean_data = get_chart(chart_type, birth_date)
+    print(clean_data)
 
     send_email = set_email()
 
     if send_email == 'y':
+        chart_for_email = get_chart_for_email(chart_type, birth_date)
         RECIPIENT_EMAIL_ADDRESS = set_recipient_email_address()
         SendDynamic()
+        print(chart_for_email)
