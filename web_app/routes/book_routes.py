@@ -19,5 +19,5 @@ def list_books():
 @book_routes.route("/api/books/<int:book_id>.json")
 def get_book(book_id):
     print("BOOK...", book_id)
-    book = {"id": book_id, "title": f"Example Book", "year": 2000} # some dummy / placeholder data
+    book = {"id": book_id, "title": "Example Book", "year": 2000} # some dummy / placeholder data
     return jsonify(book)

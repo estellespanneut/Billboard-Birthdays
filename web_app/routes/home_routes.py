@@ -22,5 +22,5 @@ def hello_world():
     # ... which will return None instead of throwing an error if key is not present
     # ... see also: https://www.w3schools.com/python/ref_dictionary_get.asp
     name = request.args.get("name") or "World"
-    message = f"Hello, {name}!"
+    message = "Hello, {}!".format(name)
     return render_template("hello.html", message=message)
