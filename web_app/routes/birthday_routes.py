@@ -1,8 +1,10 @@
 # web_app/routes/birthday_routes.py
 
+from app.email_service import SENDER_EMAIL_ADDRESS
 from flask import Blueprint, request, jsonify, render_template, redirect, flash
 
 from app.birthday import get_chart
+from app.email_service import send_email
 
 birthday_routes = Blueprint("birthday_routes", __name__)
 
@@ -46,10 +48,31 @@ def birthday_billboard(): #check this
     birth_date = request_data.get("birth_date") or "2000-01-01" #error
     chart_type = request_data.get("chart_type") or "hot-100"
     
-    results = get_chart(chart_type=chart_type, birth_date=birth_date)
+    results = get_chart(chart_type=chart_type, birth_date=birth_date) #HERE
     if results:
         flash("Birthday Data Generated Successfully!", "success")
         return render_template("birthday_billboard.html", chart_type=chart_type, birth_date=birth_date, results=results)
     else:
         flash("Error. Please try again!", "danger")
         return redirect("/birthday/form")
+
+@birthday_routes.route("/birthday/email", methods=["GET", "POST"])
+def birthday_email(): #check this
+    print("Email sending!")
+
+    if request.method == "GET":
+        print("URL PARAMS:", dict(request.args))
+        request_data = dict(request.args)
+    elif request.method == "POST": # the form will send a POST
+        print("FORM DATA:", dict(request.form))
+        request_data = dict(request.form)
+
+    SENDER_EMAIL_ADDRESS = request_data.get("SENDER_EMAIL_ADDRESS") or "example@example.com"
+    
+    results = send_email(recipient_address = SENDER_EMAIL_ADDRESS) 
+    if results:
+        flash("Email sent successfully!", "success")
+        return render_template("email.html", recipient_address = SENDER_EMAIL_ADDRESS)
+    else:
+        flash("Error. Please try again!", "danger")
+        return redirect("/birthday/billboard")
