@@ -40,7 +40,7 @@ def set_chart_type():
 
 
 
-# other value errors are handled by billboard.py --> no need to add more input validation
+# value errors are handled by billboard.py --> no need to add more input validation
 
 def get_chart(chart_type, birth_date):
     chart = billboard.ChartData(chart_type, birth_date)
@@ -58,11 +58,6 @@ if __name__ == "__main__":
 
     birth_date = set_birth_date()
     chart_type = set_chart_type()
-
-    # show all the available billboard charts to the user
-    if chart_type=="list":
-        print(sorted(billboard.charts()))
-        chart_type = input("Please select the desired billboard chart type from the list.")
 
     print_chart = get_chart(chart_type, birth_date) #test
     print(print_chart) #test
