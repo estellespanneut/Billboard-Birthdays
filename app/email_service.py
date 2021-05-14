@@ -33,10 +33,13 @@ def send_email(subject="[Birtday and Songs] This is a test", html="<p>Hello Worl
 
 
 if __name__ == "__main__":
-    example_subject = "[Birtday and Songs] This is a test"
+    example_subject = "[Birthday and Songs] This is a test"
 
     example_html = """
-    <h3>This is a test of the Billboard Birthday service</h3>
+    <img src="https://images-na.ssl-images-amazon.com/images/I/71uqL5rr8%2BL._AC_SL1500_.jpg" alt="Trulli" width="700" height="275">
+
+    <h3 style="color:purple">This is a test of the Billboard Birthday service</h3>
+    
     <h4>Today's Date</h4>
     <p>Monday, January 1, 2040</p>
     <h4>Billboard Songs</h4>
@@ -45,6 +48,9 @@ if __name__ == "__main__":
         <li>2. song 2 | artist 2</li>
         <li>3. song 3 | artist 3</li>
     </ul>
+
+    <h5 style="background-color:Violet;" height="700"> </h5>
+
     """
 
     send_email(example_subject, example_html)
