@@ -3,32 +3,33 @@
 
 {% block content %}
 
-    <h2>Birthday Form</h2>
+    <h1 style="font-family:roboto">Birthday Form</h1>
 
-    <img src="https://sites.sju.edu/wade/files/2016/05/Happy-birthday-image.jpg" alt="Trulli" width="500" height="333">
+    <img src="https://media.socastsrm.com/wordpress/wp-content/blogs.dir/2281/files/2020/02/whbl_birthdaydinnerdrawing_1500x559.jpg" alt="Trulli" width="600" height="224">
 
-    <p>Request a billboard chart based on your birthday...</p>
+    <p></p>
+    <p style="font-family:roboto">Request a billboard chart based on your birthday...</p>
 
     <form action="/birthday/billboard" method="POST">
 
-        <label>Birth Date:</label>
-        <input type="text" name="birth_date" placeholder="2000-01-01" value="2000-01-01">
+        <label style="font-family:roboto">Birth Date (yyyy-mm-dd):</label>
+        <input style="font-family:roboto" type="text" name="birth_date" placeholder="2000-01-01" value="2000-01-01">
         <br>
         
-        <label>Chart Type:</label>
-        <select class="selectpicker show-tick" name="chart_type" id="chart_type" aria-label="chart_type">
-          <option value="hot-100">hot-100</option>
-          <option value="pop-songs">pop-songs</option>
-          <option value="country-songs">country-songs</option>
-          <option value="r-and-b-songs">r-and-b-songs</option>
-          <option value="rap-songs">rap-songs</option>
-          <option value="rock-songs">rock-songs</option>
-          <option value="latin-songs">latin-songs</option>
-          <option value="dance-electronic-songs">dance-electronic-songs</option>
-          <option value="christian-songs">christian-songs</option>
+        <label style="font-family:roboto">Chart Type:</label>
+        <select class="selectpicker show-tick" style="font-family:roboto" name="chart_type" id="chart_type" aria-label="chart_type">
+          <option style="font-family:roboto" value="hot-100">hot-100</option>
+          <option style="font-family:roboto" value="pop-songs">pop-songs</option>
+          <option style="font-family:roboto" value="country-songs">country-songs</option>
+          <option style="font-family:roboto" value="r-and-b-songs">r-and-b-songs</option>
+          <option style="font-family:roboto" value="rap-songs">rap-songs</option>
+          <option style="font-family:roboto" value="rock-songs">rock-songs</option>
+          <option style="font-family:roboto" value="latin-songs">latin-songs</option>
+          <option style="font-family:roboto" value="dance-electronic-songs">dance-electronic-songs</option>
+          <option style="font-family:roboto" value="christian-songs">christian-songs</option>
         </select>
-          
-        <button>Submit</button>
+        
+        <button style="font-family:roboto" class="btn btn-dark btn-sm">Submit</button>
     </form>
 
 {% endblock %}
