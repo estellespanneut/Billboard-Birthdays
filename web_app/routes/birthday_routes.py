@@ -1,10 +1,8 @@
 # web_app/routes/birthday_routes.py
 
-from app.email_service import SENDER_EMAIL_ADDRESS
 from flask import Blueprint, request, jsonify, render_template, redirect, flash
 
-from app.birthday import get_chart
-from app.email_service import send_email
+from app.birthday import get_chart, get_chart_for_email
 
 birthday_routes = Blueprint("birthday_routes", __name__)
 
@@ -67,12 +65,12 @@ def birthday_email(): #check this
         print("FORM DATA:", dict(request.form))
         request_data = dict(request.form)
 
-    SENDER_EMAIL_ADDRESS = request_data.get("SENDER_EMAIL_ADDRESS") or "example@example.com"
+    RECIPIENT_EMAIL_ADDRESS = request_data.get("RECEPIENT_EMAIL_ADDRESS") or "example@example.com"
     
-    results = send_email(recipient_address = SENDER_EMAIL_ADDRESS) 
+    results = get_chart_for_email(recipient_address = RECIPIENT_EMAIL_ADDRESS) 
     if results:
         flash("Email sent successfully!", "success")
-        return render_template("email.html", recipient_address = SENDER_EMAIL_ADDRESS)
+        return render_template("email.html", recipient_address = RECIPIENT_EMAIL_ADDRESS)
     else:
         flash("Error. Please try again!", "danger")
         return redirect("/birthday/billboard")
