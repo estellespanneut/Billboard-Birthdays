@@ -134,5 +134,5 @@ if __name__ == "__main__":
     if send_email == 'y':
         chart_for_email = get_chart_for_email(chart_type, birth_date)
         RECIPIENT_EMAIL_ADDRESS = set_recipient_email_address()
-        SendDynamic()
+        SendDynamic(SENDER_EMAIL_ADDRESS, RECIPIENT_EMAIL_ADDRESS, birth_date, chart_type, chart_for_email)
         print(chart_for_email)

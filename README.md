@@ -1,6 +1,8 @@
-
-
 # Billboard-Birthdays
+
+Sends you a customized email every morning, with information of interest, such as the upcoming weather forecast for your zip code.
+
+![](https://user-images.githubusercontent.com/1328807/77860069-173ef580-71db-11ea-83c6-5897bb9f4f51.png)
 
 
 
@@ -23,7 +25,6 @@ SENDER_EMAIL_ADDRESS="_______________"
 #ZIP_CODE="10017"
 #USER_NAME="Jon Snow"
 ```
-
 
 ## Usage
 
