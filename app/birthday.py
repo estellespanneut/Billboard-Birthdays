@@ -87,7 +87,7 @@ def get_chart_for_email(chart_type, birth_date):
 # send an email using sendgrid application
 #
 
-def SendDynamic():
+def SendDynamic(SENDER_EMAIL_ADDRESS, RECIPIENT_EMAIL_ADDRESS, birth_date, chart_type, chart_for_email): #SENDER_EMAIL_ADDRESS, RECIPIENT_EMAIL_ADDRESS, chart_type, birth_date, chart_for_email
     """ Send a dynamic email to a list of email addresses
 
     :returns API response code
@@ -115,7 +115,7 @@ def SendDynamic():
         print("Dynamic Messages Sent!")
     except Exception as e:
         print("Error: {0}".format(e))
-    return str(response.status_code)
+    #return str(response.status_code) #HERE
 
 #
 # run the app

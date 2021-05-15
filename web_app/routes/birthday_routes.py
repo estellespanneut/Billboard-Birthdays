@@ -1,10 +1,11 @@
 # web_app/routes/birthday_routes.py
 
-from app.email_service import SENDER_EMAIL_ADDRESS
+from app.birthday import SENDER_EMAIL_ADDRESS
 from flask import Blueprint, request, jsonify, render_template, redirect, flash
 
 from app.birthday import get_chart
-from app.email_service import send_email
+from app.birthday import SendDynamic
+from app.birthday import get_chart_for_email
 
 birthday_routes = Blueprint("birthday_routes", __name__)
 
@@ -23,7 +24,7 @@ def birthday_billboard_api():
     #breakpoint()
 
     if results: 
-        return jsonify(results) #This gives me an error every time
+        return jsonify(results) 
         #return "about me"
     else:
         return jsonify({"message":"Invalid Information. Please try again."}), 404
@@ -45,10 +46,10 @@ def birthday_billboard(): #check this
         print("FORM DATA:", dict(request.form))
         request_data = dict(request.form)
 
-    birth_date = request_data.get("birth_date") or "2000-01-01" #error
+    birth_date = request_data.get("birth_date") or "2000-01-01" 
     chart_type = request_data.get("chart_type") or "hot-100"
     
-    results = get_chart(chart_type=chart_type, birth_date=birth_date) #HERE
+    results = get_chart(chart_type=chart_type, birth_date=birth_date)
     if results:
         flash("Birthday Data Generated Successfully!", "success")
         return render_template("birthday_billboard.html", chart_type=chart_type, birth_date=birth_date, results=results)
@@ -66,10 +67,12 @@ def birthday_email(): #check this
     elif request.method == "POST": # the form will send a POST
         print("FORM DATA:", dict(request.form))
         request_data = dict(request.form)
-
+    birth_date = "2000-01-01"
+    chart_type = "hot-100"
+    chart_for_email = []
     SENDER_EMAIL_ADDRESS = request_data.get("SENDER_EMAIL_ADDRESS") or "example@example.com"
-    
-    results = send_email(recipient_address = SENDER_EMAIL_ADDRESS) 
+    results = SendDynamic(SENDER_EMAIL_ADDRESS = SENDER_EMAIL_ADDRESS, RECIPIENT_EMAIL_ADDRESS = SENDER_EMAIL_ADDRESS, birth_date = birth_date, chart_type = chart_type, chart_for_email = chart_for_email)
+    #results = SendDynamic(SENDER_EMAIL_ADDRESS = SENDER_EMAIL_ADDRESS, RECIPIENT_EMAIL_ADDRESS = SENDER_EMAIL_ADDRESS) #recipient_address = SENDER_EMAIL_ADDRESS
     if results:
         flash("Email sent successfully!", "success")
         return render_template("email.html", recipient_address = SENDER_EMAIL_ADDRESS)
