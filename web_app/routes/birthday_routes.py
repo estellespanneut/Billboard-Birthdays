@@ -2,7 +2,7 @@
 
 from flask import Blueprint, request, jsonify, render_template, redirect, flash
 
-from app.birthday import get_chart
+from app.birthday import get_chart #RECIPIENT_EMAIL_ADDRESS
 from app.birthday import SendDynamic
 from app.birthday import get_chart_for_email
 
@@ -47,8 +47,10 @@ def birthday_billboard(): #check this
 
     BIRTH_DATE = request_data.get("birth_date") or "2000-01-01" 
     CHART_TYPE = request_data.get("chart_type") or "hot-100"
-    
+    CHART_FOR_EMAIL = get_chart_for_email(birth_date = BIRTH_DATE, chart_type = CHART_TYPE)
+    SENDER_EMAIL_ADDRESS = request_data.get("SENDER_EMAIL_ADDRESS") or "example@example.com"
     results = get_chart(chart_type=CHART_TYPE, birth_date=BIRTH_DATE)
+    results1 = SendDynamic(SENDER_EMAIL_ADDRESS = SENDER_EMAIL_ADDRESS, RECIPIENT_EMAIL_ADDRESS = SENDER_EMAIL_ADDRESS, birth_date = BIRTH_DATE, chart_type = CHART_TYPE, chart_for_email = CHART_FOR_EMAIL)
     if results:
         flash("Birthday Data Generated Successfully!", "success")
         return render_template("birthday_billboard.html", chart_type=CHART_TYPE, birth_date=BIRTH_DATE, results=results)
