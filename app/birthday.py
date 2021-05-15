@@ -19,7 +19,7 @@ BIRTH_DATE = os.getenv("BIRTH_DATE", default="2000-01-01")
 CHART_TYPE = os.getenv("CHART_TYPE", default="hot-100")
 SENDGRID_API_KEY = os.getenv("SENDGRID_API_KEY")
 SENDER_EMAIL_ADDRESS = os.getenv("SENDER_EMAIL_ADDRESS")
-TEMPLATE_ID = "d-05507d891d5b41248bf693b643ec804d" #sendgrid email template
+TEMPLATE_ID = "d-6d8b6cb0cd174d55b1786b6fd765b6f2" #sendgrid email template
 
 def set_birth_date():
     if APP_ENV == "development":
@@ -38,6 +38,10 @@ def set_chart_type():
             Some charts available include 'hot-100', 'country-songs', 'pop-songs', 'r-b-hip-hop-songs.'
             If you want to view an entire list of available charts, please enter 'list'.
             """)
+        if chart_type=="list":
+            print(sorted(billboard.charts()))
+            chart_type = input("Please select the desired billboard chart type from the list.")
+
     else:
         chart_type = CHART_TYPE
     return chart_type
@@ -87,7 +91,7 @@ def get_chart_for_email(chart_type, birth_date):
 # send an email using sendgrid application
 #
 
-def SendDynamic():
+def SendDynamic(SENDER_EMAIL_ADDRESS, RECIPIENT_EMAIL_ADDRESS, birth_date, chart_type, chart_for_email): #SENDER_EMAIL_ADDRESS, RECIPIENT_EMAIL_ADDRESS, chart_type, birth_date, chart_for_email
     """ Send a dynamic email to a list of email addresses
 
     :returns API response code
@@ -115,7 +119,7 @@ def SendDynamic():
         print("Dynamic Messages Sent!")
     except Exception as e:
         print("Error: {0}".format(e))
-    return str(response.status_code)
+    #return str(response.status_code) #HERE
 
 #
 # run the app
@@ -134,5 +138,4 @@ if __name__ == "__main__":
     if send_email == 'y':
         chart_for_email = get_chart_for_email(chart_type, birth_date)
         RECIPIENT_EMAIL_ADDRESS = set_recipient_email_address()
-        SendDynamic()
-        print(chart_for_email)
+        SendDynamic(SENDER_EMAIL_ADDRESS, RECIPIENT_EMAIL_ADDRESS, birth_date, chart_type, chart_for_email)
