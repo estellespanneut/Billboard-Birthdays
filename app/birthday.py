@@ -19,7 +19,7 @@ BIRTH_DATE = os.getenv("BIRTH_DATE", default="2000-01-01")
 CHART_TYPE = os.getenv("CHART_TYPE", default="hot-100")
 SENDGRID_API_KEY = os.getenv("SENDGRID_API_KEY")
 SENDER_EMAIL_ADDRESS = os.getenv("SENDER_EMAIL_ADDRESS")
-TEMPLATE_ID = "d-05507d891d5b41248bf693b643ec804d" #sendgrid email template
+TEMPLATE_ID = "d-6d8b6cb0cd174d55b1786b6fd765b6f2" #sendgrid email template
 
 def set_birth_date():
     if APP_ENV == "development":
@@ -135,4 +135,3 @@ if __name__ == "__main__":
         chart_for_email = get_chart_for_email(chart_type, birth_date)
         RECIPIENT_EMAIL_ADDRESS = set_recipient_email_address()
         SendDynamic(SENDER_EMAIL_ADDRESS, RECIPIENT_EMAIL_ADDRESS, birth_date, chart_type, chart_for_email)
-        print(chart_for_email)
