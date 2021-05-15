@@ -38,6 +38,10 @@ def set_chart_type():
             Some charts available include 'hot-100', 'country-songs', 'pop-songs', 'r-b-hip-hop-songs.'
             If you want to view an entire list of available charts, please enter 'list'.
             """)
+        if chart_type=="list":
+            print(sorted(billboard.charts()))
+            chart_type = input("Please select the desired billboard chart type from the list.")
+
     else:
         chart_type = CHART_TYPE
     return chart_type
