@@ -43,7 +43,7 @@ SENDER_EMAIL_ADDRESS="_______________"
 
 ## Usage
 
-Retrieve data from the selected chart of the selected date & email the results
+To use this app locally, retrieve data from the selected chart of the selected date & email the results
 
 ```sh
 python -m app.birthday
@@ -52,10 +52,14 @@ python -m app.birthday
 APP_ENV="production" BIRTH_DATE="2000-01-01" CHART_TYPE="hot-100" python -m app.birthday
 ```
 
+The app will prompt 2 inputs: the birth date and chart type. You will then be prompted to choose whether or not you would like the recipient to receive an email, and if you select "y" (yes), you will be prompted for your email address.
+
 > NOTE: the SendGrid emails might first start showing up in spam, until you designate them as coming from a trusted source (i.e. "Looks Safe")
 
 
 ### Web App
+
+To access the web app from your local machine follow these steps: 
 
 ```sh
 # mac:
@@ -65,8 +69,10 @@ export FLASK_APP=web_app
 flask run
 ```
 
+Then, go to localhost:5000 to access the app. Follow the instructions located in the web app. Go to the Birthday Form page to input the birth date, preferred chart type, and email address of the birthday recipient. You will then be redirected to a dashboard with the top song title for that date and chart, and an e-card with this information will be emailed to the recipient. 
+
 ### Heroku app
 
-go to http://birthday-app-2021.herokuapp.com/ and follow instructions located in the web app
+go to http://birthday-app-2021.herokuapp.com/ and follow instructions located in the web app. Go to the Birthday Form page to input the birth date, preferred chart type, and email address of the birthday recipient. You will then be redirected to a dashboard with the top song title for that date and chart, and an e-card with this information will be emailed to the recipient. 
 
 
