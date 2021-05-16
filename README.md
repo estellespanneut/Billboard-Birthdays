@@ -1,6 +1,6 @@
 # Billboard-Birthdays
 
-Show you a chosen billboard chart data of a selected date. It also sends a customized birthday card to a specified email address.
+This app shows you a chosen billboard chart data of a selected date. It also sends a customized birthday card to a specified email address.
 
 ![](https://i.ibb.co/1T9r5hL/example-email.png)
 
@@ -64,5 +64,9 @@ FLASK_APP=web_app flask run
 export FLASK_APP=web_app
 flask run
 ```
+
+### Heroku app
+
+go to http://birthday-app-2021.herokuapp.com/ and follow instructions located in the web app
 
 
